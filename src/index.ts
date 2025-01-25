@@ -2,8 +2,7 @@ import http from 'http';
 import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import initializeDatabase from './db';
-import ProgramRouter from './routes/programs';
-import ExerciseRouter from './routes/exercises';
+import v1Router from './routes/v1';
 dotenv.config();
 
 const app: Express = express();
@@ -14,8 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Register routes
-app.use('/programs', ProgramRouter());
-app.use('/exercises', ExerciseRouter());
+app.use('/v1', v1Router);
 
 // Start and run the server
 const runServer = async () => {
