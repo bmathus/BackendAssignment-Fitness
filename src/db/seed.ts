@@ -1,10 +1,13 @@
-import { models, sequelize } from './db/index';
-import { EXERCISE_DIFFICULTY } from './utils/enums';
+import { models } from '../models';
+import { EXERCISE_DIFFICULTY } from '../utils/enums';
+import sequelize from '../config/db';
+import initializeDatabase from '.';
 
 const { Exercise, Program } = models;
 
 const seedDB = async () => {
-  console.log('Im seeding');
+  await initializeDatabase(true);
+
   await sequelize.sync({ force: true });
 
   await Program.bulkCreate(
