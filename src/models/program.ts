@@ -1,16 +1,12 @@
 /* eslint import/no-cycle: 0 */
 
 import { Sequelize, DataTypes } from 'sequelize';
-import { DatabaseModel } from '../types/db';
-import { EXERCISE_DIFFICULTY } from '../utils/enums';
-import { ExerciseModel } from './exercise';
+import DatabaseModel from '../types/db';
+import { Program, ProgramAdd } from '../types/program';
 
-export class ProgramModel extends DatabaseModel {
-  id: number;
-  difficulty: EXERCISE_DIFFICULTY;
-  name: String;
-
-  exercises: ExerciseModel[];
+export class ProgramModel extends DatabaseModel<Program, ProgramAdd> {
+  declare id: number;
+  declare name: string;
 }
 
 export default (sequelize: Sequelize) => {
@@ -24,23 +20,24 @@ export default (sequelize: Sequelize) => {
       },
       name: {
         type: DataTypes.STRING(200),
+        allowNull: false,
       },
     },
     {
       paranoid: true,
       timestamps: true,
       sequelize,
-      modelName: 'program',
+      tableName: 'programs',
+      modelName: 'Program',
     }
   );
 
   ProgramModel.associate = (models) => {
-    (ProgramModel as any).hasMany(models.Exercise, {
-      foreignKey: {
-        name: 'programID',
-        allowNull: false,
-      },
-      as: 'translations',
+    ProgramModel.belongsToMany(models.ExerciseModel, {
+      through: models.ProgramExerciseModel,
+      foreignKey: 'programId',
+      otherKey: 'exerciseId',
+      as: 'exercises',
     });
   };
 

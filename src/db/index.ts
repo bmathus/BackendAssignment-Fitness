@@ -1,12 +1,12 @@
 import sequelize from '../config/db';
-import { createModelAssosiations } from '../models';
+import { createModelAssociations } from '../models';
 
 const initializeDatabase = async (force: boolean) => {
   try {
     await sequelize.authenticate();
     console.log('Database connected');
 
-    createModelAssosiations(sequelize);
+    createModelAssociations(sequelize);
     console.log('Initialized models and their associations');
 
     if (process.env.NODE_ENV === 'DEV') {

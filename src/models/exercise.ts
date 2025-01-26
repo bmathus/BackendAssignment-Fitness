@@ -1,14 +1,12 @@
-import { Sequelize, DataTypes, Model } from 'sequelize';
-import { DatabaseModel } from '../types/db';
-import { ProgramModel } from './program';
-
+import { Sequelize, DataTypes } from 'sequelize';
+import DatabaseModel from '../types/db';
+import { Exercise, ExerciseAdd } from '../types/exercise';
 import { EXERCISE_DIFFICULTY } from '../utils/enums';
 
-export class ExerciseModel extends DatabaseModel {
-  id: number;
-  difficulty: EXERCISE_DIFFICULTY;
-  name: String;
-  program: ProgramModel;
+export class ExerciseModel extends DatabaseModel<Exercise, ExerciseAdd> {
+  declare id: number;
+  declare name: string;
+  declare difficulty: EXERCISE_DIFFICULTY;
 }
 
 export default (sequelize: Sequelize) => {
@@ -20,29 +18,31 @@ export default (sequelize: Sequelize) => {
         allowNull: false,
         autoIncrement: true,
       },
-      difficulty: {
-        type: DataTypes.ENUM(...Object.values(EXERCISE_DIFFICULTY)),
-      },
       name: {
         type: DataTypes.STRING(200),
+        allowNull: false,
+      },
+      difficulty: {
+        type: DataTypes.ENUM(...Object.values(EXERCISE_DIFFICULTY)),
+        allowNull: false,
       },
     },
     {
       paranoid: true,
       timestamps: true,
       sequelize,
-      modelName: 'exercise',
+      modelName: 'Exercise',
+      tableName: 'exercises',
     }
   );
 
   ExerciseModel.associate = (models) => {
-    (ExerciseModel as any).belongsTo(models.Program, {
-      foreignKey: {
-        name: 'programID',
-        allowNull: false,
-      },
+    ExerciseModel.belongsToMany(models.ProgramModel, {
+      through: models.ProgramExerciseModel,
+      foreignKey: 'exerciseId',
+      otherKey: 'programId',
+      as: 'programs',
     });
   };
-
   return ExerciseModel;
 };
