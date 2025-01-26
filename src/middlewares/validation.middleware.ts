@@ -1,10 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import { Schema } from 'joi';
-import i18n from '../config/i18n';
 
 /**
  * Middleware for validating request data.
- * @param schemaBuilder - Function to build Joi schema dynamically.
+ * @param schemaBuilder - Validator function to build Joi schema messages dynamically based on localization
  */
 const validationMiddleware = (schemaBuilder: (req: Request) => Schema) => {
   return (req: Request, res: Response, next: NextFunction) => {

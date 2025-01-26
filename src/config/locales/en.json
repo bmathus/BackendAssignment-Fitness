@@ -4,8 +4,7 @@
     "exerciseCreated": "Exercise created successfullyyyyyyy."
   },
   "errors": {
-    "internalError": "Something went wrong.",
-    "notFound": "Resource not found."
+    "internal_error": "Something went wrong"
   },
 
   "validation": {

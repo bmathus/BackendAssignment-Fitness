@@ -4,8 +4,7 @@
     "exerciseCreated": "Cvičenie bolo úspešne vytvorené."
   },
   "errors": {
-    "internalError": "Nastala chyba.",
-    "notFound": "Zdroje sa nenašli."
+    "internal_error": "Niečo sa pokazilo."
   },
 
   "validation": {
