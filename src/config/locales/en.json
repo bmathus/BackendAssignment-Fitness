@@ -6,5 +6,13 @@
   "errors": {
     "internalError": "Something went wrong.",
     "notFound": "Resource not found."
+  },
+
+  "validation": {
+    "required": "{{field}} is required.",
+    "string_base": "{{field}} must be a string.",
+    "string_empty":"{{field}} is not allowed to be empty",
+    "string_max": "{{field}} must not exceed {{max}} characters.",
+    "any_only": "{{field}} must be one of {{values}}."
   }
 }

@@ -6,5 +6,13 @@
   "errors": {
     "internalError": "Nastala chyba.",
     "notFound": "Zdroje sa nenašli."
+  },
+
+  "validation": {
+    "required": "{{field}} je povinné.",
+    "string_base": "{{field}} musí byť reťazec.",
+    "string_empty":"{{field}} nemože byť prázdny",
+    "string_max": "{{field}} nesmie presiahnuť {{max}} znakov.",
+    "any_only": "{{field}} musí byť jedna z možností {{values}}."
   }
 }
