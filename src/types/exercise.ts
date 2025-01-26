@@ -1,5 +1,4 @@
 import { EXERCISE_DIFFICULTY } from '../utils/enums';
-import { ProgramExercise } from './programExercise';
 
 export interface Exercise {
   id: number;
@@ -7,4 +6,4 @@ export interface Exercise {
   difficulty: EXERCISE_DIFFICULTY;
 }
 
-export type ExerciseAdd = Omit<ProgramExercise, 'id'>;
+export type ExerciseAdd = Omit<Exercise, 'id'>;

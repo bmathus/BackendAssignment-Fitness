@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import { createExercise } from '../../controllers/exercise.controller';
 import { models } from '../../models';
 const { ExerciseModel } = models;
 
@@ -14,5 +15,7 @@ router.get('/', async (_req: Request, res: Response, _next: NextFunction) => {
     message: 'List of exercises',
   });
 });
+
+router.post('/', createExercise);
 
 export default router;
