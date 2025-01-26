@@ -1,0 +1,10 @@
+{
+  "messages": {
+    "programCreated": "Program created successfully.",
+    "exerciseCreated": "Exercise created successfullyyyyyyy."
+  },
+  "errors": {
+    "internalError": "Something went wrong.",
+    "notFound": "Resource not found."
+  }
+}

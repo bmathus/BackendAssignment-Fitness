@@ -3,12 +3,14 @@ import express, { Express } from 'express';
 import dotenv from 'dotenv';
 import initializeDatabase from './db';
 import v1Router from './routes/v1';
+import i18n from './config/i18n';
 dotenv.config();
 
 const app: Express = express();
 const PORT = process.env.PORT || 8000;
 
 // Register middlewares
+app.use(i18n.init); // Localization middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

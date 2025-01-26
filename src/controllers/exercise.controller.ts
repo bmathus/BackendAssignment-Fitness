@@ -8,7 +8,7 @@ export async function createExercise(req: Request, res: Response) {
     const newExercise = await exerciseService.createExercise(exerciseData);
     res.status(201).json({
       data: newExercise,
-      message: 'Exercise created successfully',
+      message: res.__('messages.exerciseCreated'),
     });
   } catch (err) {
     console.log('Error in createExercise handler:', err);

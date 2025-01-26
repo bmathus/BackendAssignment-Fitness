@@ -1,0 +1,10 @@
+{
+  "messages": {
+    "programCreated": "Program bol úspešne vytvorený.",
+    "exerciseCreated": "Cvičenie bolo úspešne vytvorené."
+  },
+  "errors": {
+    "internalError": "Nastala chyba.",
+    "notFound": "Zdroje sa nenašli."
+  }
+}
