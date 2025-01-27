@@ -1,6 +1,8 @@
 {
   "exercise": {
     "created": "Cvičenie bolo úspešne vytvorené.",
+    "updated": "Cvičenie bolo úspešne aktualizované.",
+    "not_found": "Cvičenie pre aktualizáciu nebolo najdené.",
     "all":"Zoznam cvičení."
   },
   "program":{
@@ -11,10 +13,13 @@
   },
 
   "validation": {
+    "positive":"{{field}} musí byť pozitívne",
+    "number_base":"{{field}} musi byť cele číslo",
     "required": "{{field}} je povinné.",
     "string_base": "{{field}} musí byť reťazec.",
     "string_empty":"{{field}} nemože byť prázdny",
     "string_max": "{{field}} nesmie presiahnuť {{max}} znakov.",
-    "any_only": "{{field}} musí byť jedna z možností {{values}}."
+    "any_only": "{{field}} musí byť jedna z možností {{values}}.",
+    "at_least_one_field":"Aspon jedno pole musí byť poskytnuté"
   }
 }

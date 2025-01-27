@@ -1,6 +1,8 @@
 {
   "exercise": {
     "created": "Exercise created successfully.",
+    "updated":"Exercise updated successfully.",
+    "not_found": "Exercise to update not found.",
     "all":"List of exercises."
   },
   "program":{
@@ -11,10 +13,13 @@
   },
 
   "validation": {
+    "positive":"{{field}} must be positive",
+    "number_base":"{{field}} must be integer number",
     "required": "{{field}} is required.",
     "string_base": "{{field}} must be a string.",
     "string_empty":"{{field}} is not allowed to be empty",
     "string_max": "{{field}} must not exceed {{max}} characters.",
-    "any_only": "{{field}} must be one of {{values}}."
+    "any_only": "{{field}} must be one of {{values}}.",
+    "at_least_one_field":"At least one field is required."
   }
 }

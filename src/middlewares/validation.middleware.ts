@@ -5,41 +5,39 @@ import { Schema } from 'joi';
  * Middleware for validating request data.
  * @param schemaBuilder - Validator function to build Joi schema messages dynamically based on localization
  */
-const validationMiddleware = (schemaBuilder: (req: Request) => Schema) => {
+const validationMiddleware = (schemaBuilders: {
+  body?: (req: Request) => Schema;
+  params?: (req: Request) => Schema;
+}) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const schema = schemaBuilder(req);
-
-    const { error, value } = schema.validate(req.body, {
-      abortEarly: false,
-      stripUnknown: true,
-    });
-    if (error) {
-      return res.status(400).json({
-        data: {},
-        message: error.details.map((detail) => detail.message), // Use localized messages
+    if (schemaBuilders.body) {
+      const { error, value } = schemaBuilders.body(req).validate(req.body, {
+        abortEarly: false,
+        stripUnknown: true,
       });
+      if (error) {
+        return res.status(400).json({
+          data: {},
+          message: error.details.map((detail) => detail.message),
+        });
+      }
+      req.body = value; // Update body with stripped fields
     }
-    req.body = value; // Update the body with stripped fields
 
-    // if (schema.query) {
-    //   const { error, value } = schema.query.validate(req.query, {
-    //     stripUnknown: true,
-    //   });
-    //   if (error) {
-    //     return res.status(400).json({ message: error.details[0].message });
-    //   }
-    //   req.query = value; // Update the query with stripped fields
-    // }
-
-    // if (schema.params) {
-    //   const { error, value } = schema.params.validate(req.params, {
-    //     stripUnknown: true,
-    //   });
-    //   if (error) {
-    //     return res.status(400).json({ message: error.details[0].message });
-    //   }
-    //   req.params = value; // Update the params with stripped fields
-    // }
+    // Validate params
+    if (schemaBuilders.params) {
+      const { error, value } = schemaBuilders.params(req).validate(req.params, {
+        abortEarly: false,
+        stripUnknown: true,
+      });
+      if (error) {
+        return res.status(400).json({
+          data: {},
+          message: error.details.map((detail) => detail.message),
+        });
+      }
+      req.params = value; // Update params
+    }
 
     next();
   };

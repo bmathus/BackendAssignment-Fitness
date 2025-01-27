@@ -3,18 +3,28 @@ import { models } from '../models';
 const { ExerciseModel } = models;
 
 async function createExercise(exerciseData: ExerciseAdd): Promise<Exercise> {
-  const newExercise = await ExerciseModel.create(exerciseData, { raw: true });
-  const { id, name, difficulty } = newExercise;
-  return { id, name, difficulty };
+  const newExercise = await ExerciseModel.create(exerciseData);
+  return newExercise.toResponse();
 }
 
-async function fetchAll(): Promise<Exercise[]> {
-  return await ExerciseModel.findAll({
-    attributes: ['id', 'name', 'difficulty'],
-  });
+async function fetchAll() {
+  return await ExerciseModel.findAll();
+}
+
+async function updateExercise(
+  id: number,
+  exerciseData: Partial<ExerciseAdd>
+): Promise<null | Exercise> {
+  const exercise = await ExerciseModel.findByPk(id);
+  if (!exercise) {
+    return null; // Exercise not found
+  }
+  await exercise.update(exerciseData);
+  return exercise.toResponse();
 }
 
 export default {
   createExercise,
   fetchAll,
+  updateExercise,
 };
