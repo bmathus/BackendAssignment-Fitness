@@ -6,7 +6,7 @@ const initializeDatabase = async (force: boolean) => {
     await sequelize.authenticate();
     console.log('Database connected');
 
-    createModelAssociations(sequelize);
+    createModelAssociations();
     console.log('Initialized models and their associations');
 
     if (process.env.NODE_ENV === 'DEV') {

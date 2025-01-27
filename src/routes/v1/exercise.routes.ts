@@ -1,4 +1,4 @@
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router } from 'express';
 import validationMiddleware from '../../middlewares/validation.middleware';
 import {
   exerciseCreateValidator,
@@ -11,8 +11,6 @@ import {
   deleteExercise,
 } from '../../controllers/exercise.controller';
 import { idParamValidator } from '../../validators/param.validator';
-import { models } from '../../models';
-const { ExerciseModel } = models;
 
 const router: Router = Router();
 

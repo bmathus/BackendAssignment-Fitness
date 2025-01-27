@@ -4,15 +4,17 @@ import sequelize from '../config/db';
 import defineExercise from './exercise';
 import defineProgram from './program';
 import defineProgramExercise from './programExercise';
+import defineUser from './user';
 
 // Import and initialize models
 const models = {
   ExerciseModel: defineExercise(sequelize),
   ProgramModel: defineProgram(sequelize),
   ProgramExerciseModel: defineProgramExercise(sequelize),
+  UserModel: defineUser(sequelize),
 };
 
-const createModelAssociations = (sequelize: Sequelize) => {
+const createModelAssociations = () => {
   const modelsFiles = fs.readdirSync(__dirname);
 
   if (Object.keys(models).length !== modelsFiles.length - 1) {
