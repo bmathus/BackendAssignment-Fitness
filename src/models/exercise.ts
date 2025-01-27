@@ -7,6 +7,16 @@ export class ExerciseModel extends DatabaseModel<Exercise, ExerciseAdd> {
   declare id: number;
   declare name: string;
   declare difficulty: EXERCISE_DIFFICULTY;
+  declare createdAt?: Date;
+  declare updatedAt?: Date;
+  declare deletedAt?: Date | null;
+
+  // Add a method to exclude timestamps
+  public toResponse(): Exercise {
+    const { createdAt, updatedAt, deletedAt, ...rest } =
+      this.toJSON() as ExerciseModel;
+    return rest;
+  }
 }
 
 export default (sequelize: Sequelize) => {
@@ -33,6 +43,11 @@ export default (sequelize: Sequelize) => {
       sequelize,
       modelName: 'Exercise',
       tableName: 'exercises',
+      // We exclude timestamps as they are not currently necessary for user
+      // But we still manage them in DB for potential future use
+      defaultScope: {
+        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }, // Exclude timestamps by default
+      },
     }
   );
 
