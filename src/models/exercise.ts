@@ -11,7 +11,7 @@ export class ExerciseModel extends DatabaseModel<Exercise, ExerciseAdd> {
   declare updatedAt?: Date;
   declare deletedAt?: Date | null;
 
-  // Add a method to exclude timestamps
+  // Method to exclude timestamps
   public toResponse(): Exercise {
     const { createdAt, updatedAt, deletedAt, ...rest } =
       this.toJSON() as ExerciseModel;
@@ -46,7 +46,7 @@ export default (sequelize: Sequelize) => {
       // We exclude timestamps as they are not currently necessary for user
       // But we still manage them in DB for potential future use
       defaultScope: {
-        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] }, // Exclude timestamps by default
+        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
       },
     }
   );

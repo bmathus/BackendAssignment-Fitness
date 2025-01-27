@@ -7,6 +7,9 @@ import { Program, ProgramAdd } from '../types/program';
 export class ProgramModel extends DatabaseModel<Program, ProgramAdd> {
   declare id: number;
   declare name: string;
+  declare createdAt?: Date;
+  declare updatedAt?: Date;
+  declare deletedAt?: Date | null;
 }
 
 export default (sequelize: Sequelize) => {
@@ -29,6 +32,11 @@ export default (sequelize: Sequelize) => {
       sequelize,
       tableName: 'programs',
       modelName: 'Program',
+      // We exclude timestamps as they are not currently necessary for user
+      // But we still manage them in DB for potential future use
+      defaultScope: {
+        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+      },
     }
   );
 
