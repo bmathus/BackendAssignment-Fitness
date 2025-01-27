@@ -10,7 +10,7 @@ import {
 
 const router: Router = Router();
 
-//Public - Get all exercises
+//Public - Get list of exercises
 router.get('/', getAllExercises);
 
 router.post('/', validationMiddleware(exerciseCreateValidator), createExercise);

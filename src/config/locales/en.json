@@ -3,6 +3,9 @@
     "created": "Exercise created successfully.",
     "all":"List of exercises."
   },
+  "program":{
+    "all":"List of programs."
+  },
   "errors": {
     "internal_error": "Something went wrong."
   },

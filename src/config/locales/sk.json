@@ -3,6 +3,9 @@
     "created": "Cvičenie bolo úspešne vytvorené.",
     "all":"Zoznam cvičení."
   },
+  "program":{
+    "all":"Zoznam programov."
+  },
   "errors": {
     "internal_error": "Niečo sa pokazilo."
   },
