@@ -1,10 +1,10 @@
 {
-  "messages": {
-    "programCreated": "Program created successfully.",
-    "exerciseCreated": "Exercise created successfullyyyyyyy."
+  "exercise": {
+    "created": "Exercise created successfully.",
+    "all":"List of exercises."
   },
   "errors": {
-    "internal_error": "Something went wrong"
+    "internal_error": "Something went wrong."
   },
 
   "validation": {
