@@ -2,7 +2,8 @@
   "exercise": {
     "created": "Exercise created successfully.",
     "updated":"Exercise updated successfully.",
-    "not_found": "Exercise to update not found.",
+    "deleted":"Exercise deleted successfully.",
+    "not_found": "Exercise not found.",
     "all":"List of exercises."
   },
   "program":{

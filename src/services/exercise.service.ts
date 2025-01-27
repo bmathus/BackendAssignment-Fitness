@@ -23,8 +23,17 @@ async function updateExercise(
   return exercise.toResponse();
 }
 
+export async function deleteExercise(id: number): Promise<boolean> {
+  const deletedCount = await ExerciseModel.destroy({
+    where: { id },
+  });
+
+  return deletedCount > 0; // Return true if an exercise was deleted
+}
+
 export default {
   createExercise,
   fetchAll,
   updateExercise,
+  deleteExercise,
 };

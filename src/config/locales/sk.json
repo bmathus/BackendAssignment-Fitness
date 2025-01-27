@@ -2,7 +2,8 @@
   "exercise": {
     "created": "Cvičenie bolo úspešne vytvorené.",
     "updated": "Cvičenie bolo úspešne aktualizované.",
-    "not_found": "Cvičenie pre aktualizáciu nebolo najdené.",
+    "deleted": "Cvičenie bolo úspešne vymazané.",
+    "not_found": "Cvičenie nebolo najdené.",
     "all":"Zoznam cvičení."
   },
   "program":{

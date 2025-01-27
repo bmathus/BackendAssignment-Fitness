@@ -8,6 +8,7 @@ import {
   createExercise,
   getAllExercises,
   updateExercise,
+  deleteExercise,
 } from '../../controllers/exercise.controller';
 import { idParamValidator } from '../../validators/param.validator';
 import { models } from '../../models';
@@ -35,6 +36,15 @@ router.patch(
     params: idParamValidator,
   }),
   updateExercise
+);
+
+//Private [Admin] - Delete existing exercise
+router.delete(
+  '/:id',
+  validationMiddleware({
+    params: idParamValidator,
+  }),
+  deleteExercise
 );
 
 export default router;

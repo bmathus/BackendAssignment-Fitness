@@ -50,6 +50,31 @@ export async function updateExercise(req: Request, res: Response) {
   }
 }
 
+export async function deleteExercise(req: Request, res: Response) {
+  try {
+    const id = parseInt(req.params.id, 10);
+    const isDeleted = await exerciseService.deleteExercise(id);
+
+    if (!isDeleted) {
+      return res.status(404).json({
+        data: {},
+        message: res.__('exercise.not_found'),
+      });
+    }
+
+    res.status(200).json({
+      data: {},
+      message: res.__('exercise.deleted'),
+    });
+  } catch (err) {
+    console.error('Error in deleteExercise handler:', err);
+    res.status(500).json({
+      data: {},
+      message: res.__('errors.internal_error'),
+    });
+  }
+}
+
 export async function getAllExercises(req: Request, res: Response) {
   try {
     const allExercises = await exerciseService.fetchAll();
