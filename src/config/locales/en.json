@@ -7,10 +7,9 @@
     "all": "List of exercises."
   },
   "auth": {
-    "register_success":"Registration succesfull."
-  },
-  "user":{
-    "duplicate": "{{field}} already exist."
+    "register_success":"Registration succesfull.",
+    "conflict_email": "Email already used.",
+    "conflict_nick": "nickName already used."
   },
   "program":{
     "all":"List of programs."

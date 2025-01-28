@@ -7,7 +7,9 @@
     "all":"Zoznam cvičení."
   },
   "auth": {
-    "register_success":"Registrácia uspešná."
+    "register_success":"Registrácia uspešná.",
+    "conflict_email": "Email sa už používa.",
+    "conflict_nick": "nickName sa už používa."
   },
   "user":{
     "duplicate": "{{field}} už existuje."

@@ -14,4 +14,6 @@ router.post(
   register
 );
 
+//Public - Login user with email and password
+router.post('/login');
 export default router;

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { registerUser } from '../services/auth.service';
 import { UserAdd } from '../types/user';
+import AppError from '../utils/error';
 
 export async function register(req: Request, res: Response) {
   try {
@@ -17,18 +18,14 @@ export async function register(req: Request, res: Response) {
       message: res.__('auth.register_success'),
     });
   } catch (err) {
-    // Email and nick name must be unique
-    if (err.name === 'SequelizeUniqueConstraintError') {
+    if (err instanceof AppError) {
       return res.status(409).json({
         data: {},
-        message: req.__('user.duplicate', {
-          field: err.errors[0].path,
-        }),
+        message: req.__(`auth.${err.errorType}`),
       });
     }
 
     console.error('Error in register handler:', err);
-
     res.status(500).json({
       data: {},
       message: req.__('errors.internal_error'),
