@@ -9,7 +9,11 @@
   "auth": {
     "register_success":"Registration succesfull.",
     "conflict_email": "Email already used.",
-    "conflict_nick": "nickName already used."
+    "conflict_nick": "nickName already used.",
+    "success":"Authentication succesfull.",
+    "invalid_credentials":"Incorrect login details: (email, password).",
+    "unauthorized":"Unauthorized access.",
+    "expired":"Logged in session expired, please log in."
   },
   "program":{
     "all":"List of programs."

@@ -1,8 +1,9 @@
 import Joi from 'joi';
 import { ROLE } from '../utils/enums';
+import { Request } from 'express';
 import validationMessages from '../utils/validationMessages';
 
-export const userCreateValidator = (req: any) =>
+export const userCreateValidator = (req: Request) =>
   Joi.object({
     name: Joi.string()
       .max(100)
@@ -37,4 +38,16 @@ export const userCreateValidator = (req: any) =>
       .valid(...Object.values(ROLE))
       .required()
       .messages(validationMessages(req, 'Role')),
+  });
+
+export const emailPasswordValidator = (req: Request) =>
+  Joi.object({
+    email: Joi.string()
+      .max(150)
+      .required()
+      .messages(validationMessages(req, 'Email', '150')),
+    password: Joi.string()
+      .max(64)
+      .required()
+      .messages(validationMessages(req, 'Password', '64', '')),
   });

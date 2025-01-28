@@ -9,10 +9,11 @@
   "auth": {
     "register_success":"Registrácia uspešná.",
     "conflict_email": "Email sa už používa.",
-    "conflict_nick": "nickName sa už používa."
-  },
-  "user":{
-    "duplicate": "{{field}} už existuje."
+    "conflict_nick": "nickName sa už používa.",
+    "success": "Autentifikácia uspešná.",
+    "invalid_credentials":"Nesprávne prihlasovacie údaje: (email, heslo)",
+    "unauthorized":"Neoprávnený prístup.",
+    "expired":"Platnosť prihlásenej relácie vypršala, prosim prihláste sa."
   },
   "program":{
     "all":"Zoznam programov."
@@ -24,7 +25,7 @@
   "validation": {
     "positive":"{{field}} musí byť pozitívne.",
     "number_base":"{{field}} musi byť cele číslo",
-    "required": "{{field}} je povinné.",
+    "required": "{{field}} je povinný.",
     "string_base": "{{field}} musí byť reťazec.",
     "string_empty":"{{field}} nemože byť prázdny",
     "string_max": "{{field}} nesmie presiahnuť {{max}} znakov.",

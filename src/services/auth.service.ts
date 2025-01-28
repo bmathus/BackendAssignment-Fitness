@@ -1,11 +1,12 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import { UserAdd } from '../types/user';
 import { Op } from 'sequelize';
 import AppError from '../utils/error';
 import { models } from '../models';
 const { UserModel } = models;
 
-export async function registerUser(userData: UserAdd) {
+async function registerUser(userData: UserAdd) {
   const { email, nickName } = userData;
 
   // Check if a user with the same email or nickname already exists
@@ -44,6 +45,28 @@ export async function registerUser(userData: UserAdd) {
   return newUser.toResponse();
 }
 
+async function authenticate(email: string, password: string) {
+  const user = await UserModel.findOne({ where: { email } });
+  if (!user) {
+    throw new AppError('Invalid credentials.', 'invalid_credentials');
+  }
+  const passwordMatch = await bcrypt.compare(password, user.password);
+  if (!passwordMatch) {
+    throw new AppError('Invalid credentials', 'invalid_credentials');
+  }
+
+  // Generate JWT
+  const token = jwt.sign(
+    {
+      id: user.id,
+    },
+    process.env.JWT_SECRET!,
+    { expiresIn: '1h' }
+  );
+  return token;
+}
+
 export default {
   registerUser,
+  authenticate,
 };
