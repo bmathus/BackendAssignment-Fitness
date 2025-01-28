@@ -15,13 +15,20 @@ export class UserModel extends DatabaseModel<User, UserAdd> {
   declare createdAt?: Date;
   declare updatedAt?: Date;
   declare deletedAt?: Date | null;
+
+  // Method to exclude timestamps
+  public toResponse(): User {
+    const { createdAt, updatedAt, deletedAt, ...rest } =
+      this.toJSON() as UserModel;
+    return rest;
+  }
 }
 
 export default (sequelize: Sequelize) => {
   UserModel.init(
     {
       id: {
-        type: DataTypes.BIGINT,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         allowNull: false,
         autoIncrement: true,
@@ -30,14 +37,14 @@ export default (sequelize: Sequelize) => {
         type: DataTypes.STRING(100),
         allowNull: true, // Optional
         validate: {
-          notEmpty: true, // Prevent empty strings
+          notEmpty: true,
         },
       },
       surname: {
         type: DataTypes.STRING(100),
         allowNull: true, // Optional
         validate: {
-          notEmpty: true, // Prevent empty strings
+          notEmpty: true,
         },
       },
       nickName: {
@@ -45,22 +52,19 @@ export default (sequelize: Sequelize) => {
         allowNull: true, // Optional
         unique: true, //Unique
         validate: {
-          notEmpty: true, // Prevent empty strings
+          notEmpty: true,
         },
       },
       email: {
         type: DataTypes.STRING(150),
         allowNull: false, //Required
         unique: true, //Unique
-        validate: {
-          isEmail: true,
-        },
       },
       password: {
         type: DataTypes.STRING(255),
         allowNull: false, // Required
         validate: {
-          notEmpty: true, // Prevent empty strings
+          notEmpty: true,
         },
       },
       age: {
