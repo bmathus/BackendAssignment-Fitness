@@ -13,7 +13,8 @@
     "success":"Authentication succesfull.",
     "invalid_credentials":"Incorrect login details: (email, password).",
     "unauthorized":"Unauthorized access.",
-    "expired":"Logged in session expired, please log in."
+    "expired":"Logged in session expired, please log in.",
+    "forbidden":"Forbidden: You do not have the required role for access."
   },
   "program":{
     "all":"List of programs."

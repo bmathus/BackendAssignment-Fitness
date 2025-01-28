@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { register, login } from '../../controllers/auth.controller';
 import validationMiddleware from '../../middlewares/validation.middleware';
-import authenticateJwt from '../../middlewares/auth.middleware';
+import { authenticateJwt, roleCheck } from '../../middlewares/auth.middleware';
 import {
   emailPasswordValidator,
   userCreateValidator,
@@ -28,7 +28,7 @@ router.post(
 );
 export default router;
 
-router.get('/protected', authenticateJwt, (req, res) => {
+router.get('/protected', authenticateJwt, roleCheck(['ADMIN']), (req, res) => {
   // If authentication succeeds, req.user is set
   res.json({
     message: 'Access granted',

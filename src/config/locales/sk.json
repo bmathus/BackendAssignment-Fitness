@@ -13,7 +13,8 @@
     "success": "Autentifikácia uspešná.",
     "invalid_credentials":"Nesprávne prihlasovacie údaje: (email, heslo)",
     "unauthorized":"Neoprávnený prístup.",
-    "expired":"Platnosť prihlásenej relácie vypršala, prosim prihláste sa."
+    "expired":"Platnosť prihlásenej relácie vypršala, prosim prihláste sa.",
+    "forbidden":"Zakázané: Nemáte požadovanú rolu pre prístup."
   },
   "program":{
     "all":"Zoznam programov."

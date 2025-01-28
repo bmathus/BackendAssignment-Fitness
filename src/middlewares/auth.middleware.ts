@@ -1,8 +1,13 @@
 import passport from '../config/passport';
 import { Request, Response, NextFunction } from 'express';
+import { User } from '../types/user';
 
 // Authentication middleware for securing routes
-const authenticateJwt = (req: Request, res: Response, next: NextFunction) => {
+export const authenticateJwt = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   passport.authenticate(
     'jwt',
     { session: false },
@@ -32,4 +37,15 @@ const authenticateJwt = (req: Request, res: Response, next: NextFunction) => {
   )(req, res, next);
 };
 
-export default authenticateJwt;
+export const roleCheck = (allowedRoles: string[]) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    const userRole = (req.user as User).role;
+    if (!allowedRoles.includes(userRole)) {
+      return res.status(403).json({
+        message: req.__('auth.forbidden'),
+      });
+    }
+
+    next();
+  };
+};
