@@ -55,10 +55,13 @@ async function authenticate(email: string, password: string) {
     throw new AppError('Invalid credentials', 'invalid_credentials');
   }
 
-  // Generate JWT
+  return generateJWT(user.id);
+}
+
+export function generateJWT(userId: number): string {
   const token = jwt.sign(
     {
-      id: user.id,
+      id: userId,
     },
     process.env.JWT_SECRET!,
     { expiresIn: '1h' }
@@ -69,4 +72,5 @@ async function authenticate(email: string, password: string) {
 export default {
   registerUser,
   authenticate,
+  generateJWT,
 };

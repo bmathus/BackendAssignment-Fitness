@@ -13,8 +13,14 @@ export async function register(req: Request, res: Response) {
     // Exclude password from response
     delete newUser.password;
 
+    // We can already login user and generate token for him
+    const token = authService.generateJWT(newUser.id);
+
     res.status(201).json({
-      data: newUser,
+      data: {
+        user: newUser,
+        token: token,
+      },
       message: res.__('auth.register_success'),
     });
   } catch (err) {
