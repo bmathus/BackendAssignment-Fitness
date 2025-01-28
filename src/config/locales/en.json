@@ -1,10 +1,16 @@
 {
   "exercise": {
     "created": "Exercise created successfully.",
-    "updated":"Exercise updated successfully.",
-    "deleted":"Exercise deleted successfully.",
+    "updated": "Exercise updated successfully.",
+    "deleted": "Exercise deleted successfully.",
     "not_found": "Exercise not found.",
-    "all":"List of exercises."
+    "all": "List of exercises."
+  },
+  "auth": {
+    "register_success":"Registration succesfull."
+  },
+  "user":{
+    "duplicate": "{{field}} already exist."
   },
   "program":{
     "all":"List of programs."
@@ -12,15 +18,19 @@
   "errors": {
     "internal_error": "Something went wrong."
   },
-
+  
   "validation": {
-    "positive":"{{field}} must be positive",
-    "number_base":"{{field}} must be integer number",
-    "required": "{{field}} is required.",
     "string_base": "{{field}} must be a string.",
-    "string_empty":"{{field}} is not allowed to be empty",
+    "string_empty":"{{field}} is not allowed to be empty.",
+    "string_min":"{{field}} must have at least {{min}} characters.",
     "string_max": "{{field}} must not exceed {{max}} characters.",
-    "any_only": "{{field}} must be one of {{values}}.",
-    "at_least_one_field":"At least one field is required."
+    "required": "{{field}} is required.",
+    "number_base":"{{field}} must be integer number.",
+    "number_min":"{{field}} minimum value can be {{min}}",
+    "positive":"{{field}} must be positive.",
+    "email":"Not a valid email",
+    "any_only": "{{field}} must be one of: {{values}}.",
+    "at_least_one_field":"At least one field is required.",
+    "one_digit":"{{field}} must contain at least 1 digit."
   }
 }

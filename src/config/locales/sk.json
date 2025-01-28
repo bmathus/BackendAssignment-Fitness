@@ -6,6 +6,12 @@
     "not_found": "Cvičenie nebolo najdené.",
     "all":"Zoznam cvičení."
   },
+  "auth": {
+    "register_success":"Registrácia uspešná."
+  },
+  "user":{
+    "duplicate": "{{field}} už existuje."
+  },
   "program":{
     "all":"Zoznam programov."
   },
@@ -14,13 +20,17 @@
   },
 
   "validation": {
-    "positive":"{{field}} musí byť pozitívne",
+    "positive":"{{field}} musí byť pozitívne.",
     "number_base":"{{field}} musi byť cele číslo",
     "required": "{{field}} je povinné.",
     "string_base": "{{field}} musí byť reťazec.",
     "string_empty":"{{field}} nemože byť prázdny",
     "string_max": "{{field}} nesmie presiahnuť {{max}} znakov.",
-    "any_only": "{{field}} musí byť jedna z možností {{values}}.",
-    "at_least_one_field":"Aspon jedno pole musí byť poskytnuté"
+    "string_min":"{{field}} musí obsahovať aspoň {{min}} znakov.",
+    "any_only": "{{field}} musí byť jedna z možností: {{values}}.",
+    "email":"Email nieje validný",
+    "number_min":"Najmenšia povolená hodnota {{field}} je {{min}}",
+    "at_least_one_field":"Aspon jedno pole musí byť poskytnuté.",
+    "one_digit":"{{field}} musí obsahovať aspoň 1 číslicu."
   }
 }
