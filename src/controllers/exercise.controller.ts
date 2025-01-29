@@ -25,10 +25,7 @@ export async function updateExercise(req: Request, res: Response) {
     const id = parseInt(req.params.id, 10);
     const exerciseData: Partial<ExerciseAdd> = req.body;
 
-    const updatedExercise = await exerciseService.updateExercise(
-      id,
-      exerciseData
-    );
+    const updatedExercise = await exerciseService.updateExercise(id, exerciseData);
 
     if (!updatedExercise) {
       return res.status(404).json({

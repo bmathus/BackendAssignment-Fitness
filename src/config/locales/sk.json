@@ -17,7 +17,14 @@
     "forbidden":"Zakázané: Nemáte požadovanú rolu pre prístup."
   },
   "program":{
-    "all":"Zoznam programov."
+    "all":"Zoznam programov.",
+    "not_found":"Program nebol najdený.",
+    "exercise":{
+      "add":"Cvičenie bolo úspešne pridané do programu.",
+      "removed":"Cvičenie bolo úspešne odobraté z programu.",
+      "conflict":"Cvičenie už bolo pridané danému programu.",
+      "not_found":"Cvičenie nepatrí danému programu: Vzťah nebol nájdený."
+    }
   },
   "errors": {
     "internal_error": "Niečo sa pokazilo."

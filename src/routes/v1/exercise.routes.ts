@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { authenticateJwt, roleCheck } from '../../middlewares/auth.middleware';
 import validationMiddleware from '../../middlewares/validation.middleware';
 import {
   exerciseCreateValidator,
@@ -10,7 +11,7 @@ import {
   updateExercise,
   deleteExercise,
 } from '../../controllers/exercise.controller';
-import { idParamValidator } from '../../validators/param.validator';
+import { IDParamValidator } from '../../validators/param.validator';
 
 const router: Router = Router();
 
@@ -20,18 +21,20 @@ router.get('/', getAllExercises);
 //Private [Admin] - Create new exercise
 router.post(
   '/',
-  validationMiddleware({
-    body: exerciseCreateValidator,
-  }),
+  authenticateJwt,
+  roleCheck(['ADMIN']),
+  validationMiddleware({ body: exerciseCreateValidator }),
   createExercise
 );
 
 //Private [Admin] - Update existing exercise
 router.patch(
   '/:id',
+  authenticateJwt,
+  roleCheck(['ADMIN']),
   validationMiddleware({
     body: updateExerciseValidator,
-    params: idParamValidator,
+    params: IDParamValidator,
   }),
   updateExercise
 );
@@ -39,9 +42,9 @@ router.patch(
 //Private [Admin] - Delete existing exercise
 router.delete(
   '/:id',
-  validationMiddleware({
-    params: idParamValidator,
-  }),
+  authenticateJwt,
+  roleCheck(['ADMIN']),
+  validationMiddleware({ params: IDParamValidator }),
   deleteExercise
 );
 

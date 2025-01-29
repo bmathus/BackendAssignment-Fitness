@@ -17,7 +17,15 @@
     "forbidden":"Forbidden: You do not have the required role for access."
   },
   "program":{
-    "all":"List of programs."
+    "all":"List of programs.",
+    "not_found": "Program not found.",
+    "exercise":{
+      "add":"Exercise successfully added to program.",
+      "removed":"Exercise successfully removed from program.",
+      "conflict":"Exercise was already added to program.",
+      "not_found":"Exercise does not belong to program: Relationship not found."
+      
+    }
   },
   "errors": {
     "internal_error": "Something went wrong."

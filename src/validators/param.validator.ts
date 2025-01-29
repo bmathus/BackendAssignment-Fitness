@@ -1,11 +1,18 @@
 import Joi from 'joi';
+import { Request } from 'express';
 
-export const idParamValidator = (req: any) =>
+export const IDParamValidator = (req: Request) =>
   Joi.object({
     id: numberValidation('ID parameter', req),
   });
 
-export const numberValidation = (field: string, req: any) =>
+export const ProgramIDExerciseIDValidador = (req: Request) =>
+  Joi.object({
+    programId: numberValidation('Program ID parameter', req),
+    exerciseId: numberValidation('Exercise ID parameter', req),
+  });
+
+const numberValidation = (field: string, req: Request) =>
   Joi.number()
     .integer()
     .positive()
