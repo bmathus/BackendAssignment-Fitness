@@ -10,15 +10,12 @@ export async function register(req: Request, res: Response) {
     // Hash password and save user in db
     const newUser = await authService.registerUser(userData);
 
-    // Exclude password from response
-    delete newUser.password;
-
     // We can already login user and generate token for him
     const token = authService.generateJWT(newUser.id);
 
     res.status(201).json({
       data: {
-        user: newUser,
+        user: newUser.toResponse(), // Exclude password, timestamps
         token: token,
       },
       message: res.__('auth.register_success'),

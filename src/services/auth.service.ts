@@ -41,8 +41,7 @@ async function registerUser(userData: UserAdd) {
     password: hashedPassword,
   });
 
-  // Exclude timestamps
-  return newUser.toResponse();
+  return newUser;
 }
 
 async function authenticate(email: string, password: string) {

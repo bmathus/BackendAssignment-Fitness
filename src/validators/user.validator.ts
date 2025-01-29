@@ -33,7 +33,8 @@ export const userCreateValidator = (req: Request) =>
     age: Joi.number()
       .integer()
       .min(1)
-      .messages(validationMessages(req, 'Age', '', '1')),
+      .max(150)
+      .messages(validationMessages(req, 'Age', '150', '1')),
     role: Joi.string()
       .valid(...Object.values(ROLE))
       .required()
@@ -51,3 +52,30 @@ export const emailPasswordValidator = (req: Request) =>
       .required()
       .messages(validationMessages(req, 'Password', '64', '')),
   });
+
+export const userUpdateValidator = (req: Request) =>
+  Joi.object({
+    name: Joi.string()
+      .max(100)
+      .messages(validationMessages(req, 'Name', '100')),
+    surname: Joi.string()
+      .max(100)
+      .messages(validationMessages(req, 'Surname', '100')),
+    nickName: Joi.string()
+      .max(50)
+      .messages(validationMessages(req, 'Nickname', '50')),
+    age: Joi.number()
+      .integer()
+      .min(1)
+      .max(150)
+      .messages(validationMessages(req, 'Age', '150', '1')),
+    role: Joi.string()
+      .valid(...Object.values(ROLE))
+      .messages(validationMessages(req, 'Role')),
+  })
+    .or('name', 'surname', 'nickName', 'age', 'role') // At least one field is required to be suplied in body for PATCH
+    .messages({
+      'object.missing': req.__('validation.at_least_one_field', {
+        field: 'name, surname, nickName, age, role',
+      }),
+    });

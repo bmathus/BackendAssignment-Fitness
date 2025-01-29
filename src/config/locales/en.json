@@ -16,6 +16,12 @@
     "expired":"Logged in session expired, please log in.",
     "forbidden":"Forbidden: You do not have the required role for access."
   },
+  "user":{
+    "not_found": "User not found.",
+    "updated": "User updated successfully.",
+    "all": "List of users.",
+    "detail":"User detail."
+  },
   "program":{
     "all":"List of programs.",
     "not_found": "Program not found.",
@@ -24,7 +30,6 @@
       "removed":"Exercise successfully removed from program.",
       "conflict":"Exercise was already added to program.",
       "not_found":"Exercise does not belong to program: Relationship not found."
-      
     }
   },
   "errors": {
@@ -39,10 +44,11 @@
     "required": "{{field}} is required.",
     "number_base":"{{field}} must be integer number.",
     "number_min":"{{field}} minimum value can be {{min}}",
+    "number_max":"{{field}} maximum value can be {{max}}",
     "positive":"{{field}} must be positive.",
-    "email":"Not a valid email",
+    "email":"Not a valid email.",
     "any_only": "{{field}} must be one of: {{values}}.",
-    "at_least_one_field":"At least one field is required.",
+    "at_least_one_field":"At least one field is required: {{field}}.",
     "one_digit":"{{field}} must contain at least 1 digit."
   }
 }

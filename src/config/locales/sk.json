@@ -16,6 +16,12 @@
     "expired":"Platnosť prihlásenej relácie vypršala, prosim prihláste sa.",
     "forbidden":"Zakázané: Nemáte požadovanú rolu pre prístup."
   },
+  "user":{
+    "not_found": "Používateľ nebol nájdený.",
+    "updated":"Používateľ bol úspešne aktualizovaný.",
+    "all": "Zoznam používateľov.",
+    "detail":"Detail používateľa."
+  },
   "program":{
     "all":"Zoznam programov.",
     "not_found":"Program nebol najdený.",
@@ -39,9 +45,10 @@
     "string_max": "{{field}} nesmie presiahnuť {{max}} znakov.",
     "string_min":"{{field}} musí obsahovať aspoň {{min}} znakov.",
     "any_only": "{{field}} musí byť jedna z možností: {{values}}.",
-    "email":"Email nieje validný",
-    "number_min":"Najmenšia povolená hodnota {{field}} je {{min}}",
-    "at_least_one_field":"Aspon jedno pole musí byť poskytnuté.",
+    "email":"Email nieje validný.",
+    "number_min":"Najmenšia povolená hodnota {{field}} je {{min}}.",
+    "number_max":"Najväčšia povolená hodnota {{field}} je {{max}}.",
+    "at_least_one_field":"Aspon jedno pole musí byť poskytnuté: {{field}}.",
     "one_digit":"{{field}} musí obsahovať aspoň 1 číslicu."
   }
 }

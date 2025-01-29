@@ -24,6 +24,7 @@ const validationMessages = (
   'number.base': req.__('validation.number_base', { field }),
   'number.integer': req.__('validation.number_base', { field }),
   'number.min': req.__('validation.number_min', { field, min }),
+  'number.max': req.__('validation.number_max', { field, max }),
   'number.positive': req.__('validation.positive', { field }),
   'string.email': req.__('validation.email'),
   'any.only': req.__('validation.any_only', {

@@ -16,9 +16,9 @@ export class UserModel extends DatabaseModel<User, UserAdd> {
   declare updatedAt?: Date;
   declare deletedAt?: Date | null;
 
-  // Method to exclude timestamps
+  // Method to exclude timestamps, password
   public toResponse(): User {
-    const { createdAt, updatedAt, deletedAt, ...rest } =
+    const { createdAt, updatedAt, deletedAt, password, ...rest } =
       this.toJSON() as UserModel;
     return rest;
   }
