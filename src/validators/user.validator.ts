@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { ROLE } from '../utils/enums';
 import { Request } from 'express';
-import validationMessages from '../utils/validationMessages';
+import validationMessages from '../utils/validation-messages';
 
 export const userCreateValidator = (req: Request) =>
   Joi.object({

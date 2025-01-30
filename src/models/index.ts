@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize';
 import sequelize from '../config/db';
 import defineExercise from './exercise';
 import defineProgram from './program';
-import defineProgramExercise from './programExercise';
+import defineProgramExercise from './program-exercise';
 import defineUser from './user';
 import defineCompletionRecord from './completion-record';
 

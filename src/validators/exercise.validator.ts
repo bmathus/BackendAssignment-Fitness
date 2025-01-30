@@ -1,6 +1,6 @@
 import Joi from 'joi';
 import { EXERCISE_DIFFICULTY } from '../utils/enums';
-import validationMessages from '../utils/validationMessages';
+import validationMessages from '../utils/validation-messages';
 import { Request } from 'express';
 
 // Dynamic messages for name validation based on localization
