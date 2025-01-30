@@ -1,5 +1,10 @@
 # Fitness app - assignment
 
+## Solution
+We used JWT token authentification. Each request on private routes needs Authorization header with Bearer.
+For request body, param and query validation we used JOI.
+All tasks should be implemented.
+
 ### Requirements
 
 - node.js ^12.14.0
