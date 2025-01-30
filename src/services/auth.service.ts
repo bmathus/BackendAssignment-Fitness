@@ -4,6 +4,8 @@ import { UserAdd } from '../types/user';
 import { Op } from 'sequelize';
 import AppError from '../utils/error';
 import { models } from '../models';
+import config from '../config';
+import { StringValue } from 'ms';
 const { UserModel } = models;
 
 async function registerUser(userData: UserAdd) {
@@ -56,8 +58,8 @@ export function generateJWT(userId: number): string {
     {
       id: userId,
     },
-    process.env.JWT_SECRET!,
-    { expiresIn: '1h' }
+    config.JWT_SECRET,
+    { expiresIn: config.JWT_EXPIRES_IN as StringValue }
   );
   return token;
 }

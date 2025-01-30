@@ -1,3 +1,4 @@
+import config from '../config';
 import sequelize from '../config/db';
 import { createModelAssociations } from '../models';
 
@@ -9,7 +10,7 @@ const initializeDatabase = async (force: boolean) => {
     createModelAssociations();
     console.log('Initialized models and their associations');
 
-    if (process.env.NODE_ENV === 'DEV') {
+    if (config.NODE_ENV === 'DEV') {
       await sequelize.sync({ force: force });
       console.log('Database synced with force:', force);
     }

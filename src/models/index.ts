@@ -1,5 +1,4 @@
 import fs from 'fs';
-import { Sequelize } from 'sequelize';
 import sequelize from '../config/db';
 import defineExercise from './exercise';
 import defineProgram from './program';

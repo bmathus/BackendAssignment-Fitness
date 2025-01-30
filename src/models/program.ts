@@ -1,5 +1,4 @@
 /* eslint import/no-cycle: 0 */
-
 import { Sequelize, DataTypes } from 'sequelize';
 import DatabaseModel from '../types/db';
 import { Program, ProgramAdd } from '../types/program';
