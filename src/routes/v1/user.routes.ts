@@ -22,7 +22,7 @@ router.patch(
 
 router.get('/', authenticateJwt, roleCheck(['ADMIN']), getAllUsers);
 
-router.get('/minimal', authenticateJwt, roleCheck(['USER']), getAllUsers);
+router.get('/preview', authenticateJwt, roleCheck(['USER']), getAllUsers);
 
 router.get(
   '/:id',

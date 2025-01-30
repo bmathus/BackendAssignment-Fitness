@@ -5,6 +5,7 @@ import defineExercise from './exercise';
 import defineProgram from './program';
 import defineProgramExercise from './programExercise';
 import defineUser from './user';
+import defineCompletionRecord from './completion-record';
 
 // Import and initialize models
 const models = {
@@ -12,6 +13,7 @@ const models = {
   ProgramModel: defineProgram(sequelize),
   ProgramExerciseModel: defineProgramExercise(sequelize),
   UserModel: defineUser(sequelize),
+  CompletionRecordModel: defineCompletionRecord(sequelize),
 };
 
 const createModelAssociations = () => {

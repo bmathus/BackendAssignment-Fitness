@@ -3,6 +3,7 @@ import { authenticateJwt, roleCheck } from '../../middlewares/auth.middleware';
 import validationMiddleware from '../../middlewares/validation.middleware';
 import {
   exerciseCreateValidator,
+  completionRecordValidator,
   updateExerciseValidator,
 } from '../../validators/exercise.validator';
 import {
@@ -10,6 +11,8 @@ import {
   getAllExercises,
   updateExercise,
   deleteExercise,
+  completeExercise,
+  deleteCompletionRecord,
 } from '../../controllers/exercise.controller';
 import { IDParamValidator } from '../../validators/param.validator';
 
@@ -46,6 +49,30 @@ router.delete(
   roleCheck(['ADMIN']),
   validationMiddleware({ params: IDParamValidator }),
   deleteExercise
+);
+
+//Private [User] - Create completed exercise record (datetime of completion, duration) for specified exercise and logged in user
+router.post(
+  '/:id/completed',
+  authenticateJwt,
+  roleCheck(['USER']),
+  validationMiddleware({
+    body: completionRecordValidator,
+    params: IDParamValidator,
+  }),
+  completeExercise
+);
+
+//Private [User] - Delete specified completion record.
+// Logged in user is not able to delete completion records of other users.
+router.delete(
+  '/completed/:id',
+  authenticateJwt,
+  roleCheck(['USER']),
+  validationMiddleware({
+    params: IDParamValidator,
+  }),
+  deleteCompletionRecord
 );
 
 export default router;

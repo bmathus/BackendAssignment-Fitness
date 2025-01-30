@@ -58,6 +58,10 @@ export default (sequelize: Sequelize) => {
       otherKey: 'programId',
       as: 'programs',
     });
+    ExerciseModel.hasMany(models.CompletionRecordModel, {
+      foreignKey: 'exerciseId',
+      as: 'completionRecords',
+    });
   };
   return ExerciseModel;
 };

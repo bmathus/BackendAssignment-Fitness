@@ -27,6 +27,7 @@ const validationMessages = (
   'number.max': req.__('validation.number_max', { field, max }),
   'number.positive': req.__('validation.positive', { field }),
   'string.email': req.__('validation.email'),
+  'string.isoDate': req.__('validation.iso_date', { field }),
   'any.only': req.__('validation.any_only', {
     field,
     values: Object.values(ROLE).join(', '),

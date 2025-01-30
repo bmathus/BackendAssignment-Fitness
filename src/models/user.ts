@@ -95,7 +95,10 @@ export default (sequelize: Sequelize) => {
   );
 
   UserModel.associate = (models) => {
-    // Define associations here, if any
+    UserModel.hasMany(models.CompletionRecordModel, {
+      foreignKey: 'userId',
+      as: 'completionRecords',
+    });
   };
 
   return UserModel;

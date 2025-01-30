@@ -1,6 +1,9 @@
 import { Request, Response } from 'express';
 import { ExerciseAdd } from '../types/exercise';
 import exerciseService from '../services/exercise.service';
+import completionRecordService from '../services/completion-record.service';
+import AppError from '../utils/error';
+import { UserModel } from '../models/user';
 
 export async function createExercise(req: Request, res: Response) {
   try {
@@ -25,7 +28,10 @@ export async function updateExercise(req: Request, res: Response) {
     const id = parseInt(req.params.id, 10);
     const exerciseData: Partial<ExerciseAdd> = req.body;
 
-    const updatedExercise = await exerciseService.updateExercise(id, exerciseData);
+    const updatedExercise = await exerciseService.updateExercise(
+      id,
+      exerciseData
+    );
 
     if (!updatedExercise) {
       return res.status(404).json({
@@ -82,6 +88,67 @@ export async function getAllExercises(req: Request, res: Response) {
   } catch (err) {
     console.error('Error in getAllExercises handler:', err);
     res.status(500).json({
+      data: {},
+      message: res.__('errors.internal_error'),
+    });
+  }
+}
+
+export async function completeExercise(req: Request, res: Response) {
+  let loggedUser = req.user as UserModel;
+  const exerciseId = parseInt(req.params.id, 10);
+  const { completedAt, duration } = req.body;
+
+  try {
+    const completionRecord = await completionRecordService.completeExercise({
+      userId: loggedUser.id,
+      exerciseId,
+      completedAt,
+      duration,
+    });
+    return res.status(201).json({
+      message: res.__('exercise.completion.created'),
+      data: completionRecord,
+    });
+  } catch (err) {
+    if (err instanceof AppError) {
+      //Exercise not found, potentially deleted
+      return res.status(404).json({
+        data: {},
+        message: req.__(err.errorType),
+      });
+    }
+    console.error('Error in completeExercise handler:', err);
+    return res.status(500).json({
+      data: {},
+      message: res.__('errors.internal_error'),
+    });
+  }
+}
+
+export async function deleteCompletionRecord(req: Request, res: Response) {
+  try {
+    let loggedUser = req.user as UserModel;
+    const completionRecordId = parseInt(req.params.id, 10);
+
+    const deleted: boolean = await completionRecordService.deleteRecord(
+      completionRecordId,
+      loggedUser.id
+    );
+
+    if (!deleted) {
+      return res.status(404).json({
+        data: {},
+        message: res.__('exercise.completion.not_found'),
+      });
+    }
+    return res.status(200).json({
+      data: {},
+      message: res.__('exercise.completion.deleted'),
+    });
+  } catch (err) {
+    console.error('Error in deleteCompletionRecord handler:', err);
+    return res.status(500).json({
       data: {},
       message: res.__('errors.internal_error'),
     });

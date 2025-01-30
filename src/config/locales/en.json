@@ -4,7 +4,14 @@
     "updated": "Exercise updated successfully.",
     "deleted": "Exercise deleted successfully.",
     "not_found": "Exercise not found.",
-    "all": "List of exercises."
+    "all": "List of exercises.",
+    "completion":{
+      "created":"Exercise completion successfully recorded.",
+      "deleted":"Completion record was successfully deleted.",
+      "not_found":"Completion record not found or belong to other user."
+    }
+    
+    
   },
   "auth": {
     "register_success":"Registration succesfull.",
@@ -41,7 +48,7 @@
     "string_empty":"{{field}} is not allowed to be empty.",
     "string_min":"{{field}} must have at least {{min}} characters.",
     "string_max": "{{field}} must not exceed {{max}} characters.",
-    "required": "{{field}} is required.",
+    "required": "{{field}} field is required.",
     "number_base":"{{field}} must be integer number.",
     "number_min":"{{field}} minimum value can be {{min}}",
     "number_max":"{{field}} maximum value can be {{max}}",
@@ -49,6 +56,7 @@
     "email":"Not a valid email.",
     "any_only": "{{field}} must be one of: {{values}}.",
     "at_least_one_field":"At least one field is required: {{field}}.",
-    "one_digit":"{{field}} must contain at least 1 digit."
+    "one_digit":"{{field}} must contain at least 1 digit.",
+    "iso_date":"{{field}} must be a valid ISO 8601 datetime string."
   }
 }

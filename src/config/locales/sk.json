@@ -4,7 +4,14 @@
     "updated": "Cvičenie bolo úspešne aktualizované.",
     "deleted": "Cvičenie bolo úspešne vymazané.",
     "not_found": "Cvičenie nebolo najdené.",
-    "all":"Zoznam cvičení."
+    "all":"Zoznam cvičení.",
+    "completion":{
+      "created":"Dokončenie cvičenia bolo úspešne zaznamenané.",
+      "deleted": "Záznam o dokončení cvičenia bol úspešne zmazaný.",
+      "not_found":"Záznam o dokončení cvičenia nebol najdený alebo patrí inému používateľovy."
+    }
+    
+    
   },
   "auth": {
     "register_success":"Registrácia uspešná.",
@@ -39,7 +46,7 @@
   "validation": {
     "positive":"{{field}} musí byť pozitívne.",
     "number_base":"{{field}} musi byť cele číslo",
-    "required": "{{field}} je povinný.",
+    "required": "{{field}} pole je povinné.",
     "string_base": "{{field}} musí byť reťazec.",
     "string_empty":"{{field}} nemože byť prázdny",
     "string_max": "{{field}} nesmie presiahnuť {{max}} znakov.",
@@ -49,6 +56,7 @@
     "number_min":"Najmenšia povolená hodnota {{field}} je {{min}}.",
     "number_max":"Najväčšia povolená hodnota {{field}} je {{max}}.",
     "at_least_one_field":"Aspon jedno pole musí byť poskytnuté: {{field}}.",
-    "one_digit":"{{field}} musí obsahovať aspoň 1 číslicu."
+    "one_digit":"{{field}} musí obsahovať aspoň 1 číslicu.",
+    "iso_date":"{{field}} musí byť validný ISO 8601 datetime string."
   }
 }

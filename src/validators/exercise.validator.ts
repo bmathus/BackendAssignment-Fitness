@@ -1,5 +1,7 @@
 import Joi from 'joi';
 import { EXERCISE_DIFFICULTY } from '../utils/enums';
+import validationMessages from '../utils/validationMessages';
+import { Request } from 'express';
 
 // Dynamic messages for name validation based on localization
 const nameValidation = (req: any) =>
@@ -46,3 +48,16 @@ export const updateExerciseValidator = (req: any) =>
     .messages({
       'object.missing': req.__('validation.at_least_one_field'),
     });
+
+export const completionRecordValidator = (req: Request) =>
+  Joi.object({
+    duration: Joi.number()
+      .integer()
+      .positive()
+      .required()
+      .messages(validationMessages(req, 'duration', '', '')),
+    completedAt: Joi.string()
+      .isoDate()
+      .required()
+      .messages(validationMessages(req, 'completedAt', '', '')),
+  });
