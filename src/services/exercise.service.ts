@@ -1,14 +1,43 @@
 import { ExerciseAdd, Exercise } from '../types/exercise';
 import { models } from '../models';
-const { ExerciseModel, CompletionRecordModel } = models;
+const { ExerciseModel, CompletionRecordModel, ProgramModel } = models;
 
 async function createExercise(exerciseData: ExerciseAdd): Promise<Exercise> {
   const newExercise = await ExerciseModel.create(exerciseData);
   return newExercise.toResponse();
 }
 
-async function fetchAll() {
-  return await ExerciseModel.findAll();
+async function fetchAllPaginated(page: number = 1, limit: number = 10, programID?: number) {
+  const offset = (page - 1) * limit;
+
+  // For program filtering we need to perform join
+  const includeOptions = programID
+    ? [
+        {
+          model: ProgramModel,
+          as: 'programs',
+          where: { id: programID },
+          attributes: [] as string[], //excludes program objects
+          through: { attributes: [] as string[] }, // excludes unnecessary fields from join table
+          required: true, // ensures only exercises in the given program are included
+        },
+      ]
+    : [];
+
+  const { rows: exercises, count: totalExercises } = await ExerciseModel.findAndCountAll({
+    include: includeOptions,
+    limit,
+    offset,
+  });
+
+  return {
+    exercises,
+    pagination: {
+      totalExercises,
+      currentPage: page,
+      totalPages: Math.ceil(totalExercises / limit),
+    },
+  };
 }
 
 async function updateExercise(
@@ -49,7 +78,7 @@ async function fetchExercisesOfUser(userId: number, includeDeleted: boolean) {
 
 export default {
   createExercise,
-  fetchAll,
+  fetchAllPaginated,
   fetchExercisesOfUser,
   updateExercise,
   deleteExercise,

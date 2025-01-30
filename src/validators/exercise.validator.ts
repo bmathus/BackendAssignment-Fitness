@@ -61,3 +61,23 @@ export const completionRecordValidator = (req: Request) =>
       .required()
       .messages(validationMessages(req, 'completedAt', '', '')),
   });
+
+export const exerciseQueryValidator = (req: Request) =>
+  Joi.object({
+    page: Joi.number()
+      .integer()
+      .min(1)
+      .default(1)
+      .messages(validationMessages(req, 'page query', '', '1')),
+    limit: Joi.number()
+      .integer()
+      .min(1)
+      .max(50)
+      .default(10)
+      .messages(validationMessages(req, 'limit query', '50', '1')),
+    programID: Joi.number()
+      .integer()
+      .min(1)
+      .optional()
+      .messages(validationMessages(req, 'programID query', '', '1')),
+  });

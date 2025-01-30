@@ -80,7 +80,18 @@ export async function deleteExercise(req: Request, res: Response) {
 
 export async function getAllExercises(req: Request, res: Response) {
   try {
-    const allExercises = await exerciseService.fetchAll();
+    const page = req.query.page ? Number(req.query.page) : 1;
+    const limit = req.query.limit ? Number(req.query.limit) : 10;
+    const programID = req.query.programID
+      ? Number(req.query.programID)
+      : undefined;
+
+    const allExercises = await exerciseService.fetchAllPaginated(
+      page,
+      limit,
+      programID
+    );
+
     return res.status(200).json({
       data: allExercises,
       message: req.__('exercise.all'),

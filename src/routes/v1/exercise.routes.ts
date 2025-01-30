@@ -5,6 +5,7 @@ import {
   exerciseCreateValidator,
   completionRecordValidator,
   updateExerciseValidator,
+  exerciseQueryValidator,
 } from '../../validators/exercise.validator';
 import {
   createExercise,
@@ -18,8 +19,8 @@ import { IDParamValidator } from '../../validators/param.validator';
 
 const router: Router = Router();
 
-//Public - Get list of exercises
-router.get('/', getAllExercises);
+//Public - Get list of exercises (paginated with programID filtering)
+router.get('/', validationMiddleware({ query: exerciseQueryValidator }), getAllExercises);
 
 //Private [Admin] - Create new exercise
 router.post(
