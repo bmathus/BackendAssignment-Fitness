@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import authService from '../services/auth.service';
 import { UserAdd } from '../types/user';
 import AppError from '../utils/error';
 
-export async function register(req: Request, res: Response) {
+export async function register(req: Request, res: Response, next: NextFunction) {
   try {
     const userData: UserAdd = req.body;
 
@@ -29,14 +29,11 @@ export async function register(req: Request, res: Response) {
       });
     }
     console.error('Error in register handler:', err);
-    res.status(500).json({
-      data: {},
-      message: req.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function login(req: Request, res: Response) {
+export async function login(req: Request, res: Response, next: NextFunction) {
   try {
     const { email, password } = req.body;
 
@@ -57,10 +54,7 @@ export async function login(req: Request, res: Response) {
       });
     }
     console.error('Error in login handler:', err);
-    res.status(500).json({
-      data: {},
-      message: req.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 

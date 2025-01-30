@@ -1,11 +1,10 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import userService from '../services/user.service';
 import exerciseService from '../services/exercise.service';
 import { UserUpdate } from '../types/user';
 import { UserModel } from '../models/user';
 
-
-export async function updateUser(req: Request, res: Response) {
+export async function updateUser(req: Request, res: Response, next: NextFunction) {
   try {
     const id = parseInt(req.params.id, 10);
     const userData: UserUpdate = req.body; //validated data to update (name, surname, nickName, age, role)
@@ -19,20 +18,17 @@ export async function updateUser(req: Request, res: Response) {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       data: updatedUser.toResponse(), // all user fields exept timestamps and password
       message: res.__('user.updated'),
     });
   } catch (err) {
     console.error('Error in updateUser handler:', err);
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function getAllUsers(req: Request, res: Response) {
+export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
   try {
     const user = req.user as UserModel;
 
@@ -49,14 +45,11 @@ export async function getAllUsers(req: Request, res: Response) {
     });
   } catch (err) {
     console.error('Error in getAllUsers handler:', err);
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function getUserDetail(req: Request, res: Response) {
+export async function getUserDetail(req: Request, res: Response, next: NextFunction) {
   try {
     let user = req.user as UserModel;
     const id = parseInt(req.params.id, 10);
@@ -79,14 +72,11 @@ export async function getUserDetail(req: Request, res: Response) {
     });
   } catch (err) {
     console.error('Error in getAllUsers handler:', err);
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function getUserProfile(req: Request, res: Response) {
+export async function getUserProfile(req: Request, res: Response, next: NextFunction) {
   try {
     const user = req.user as UserModel;
 
@@ -106,10 +96,7 @@ export async function getUserProfile(req: Request, res: Response) {
     });
   } catch (err) {
     console.error('Error in getUserProfile handler:', err);
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
@@ -117,5 +104,5 @@ export default {
   updateUser,
   getAllUsers,
   getUserDetail,
-  getUserProfile
-}
+  getUserProfile,
+};

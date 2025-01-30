@@ -1,29 +1,26 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { ExerciseAdd } from '../types/exercise';
 import exerciseService from '../services/exercise.service';
 import completionRecordService from '../services/completion-record.service';
 import AppError from '../utils/error';
 import { UserModel } from '../models/user';
 
-export async function createExercise(req: Request, res: Response) {
+export async function createExercise(req: Request, res: Response, next: NextFunction) {
   try {
     const exerciseData: ExerciseAdd = req.body;
     const newExercise = await exerciseService.createExercise(exerciseData);
 
-    res.status(201).json({
+    return res.status(201).json({
       data: newExercise,
       message: res.__('exercise.created'),
     });
   } catch (err) {
     console.error('Error in createExercise handler:', err);
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function updateExercise(req: Request, res: Response) {
+export async function updateExercise(req: Request, res: Response, next: NextFunction) {
   try {
     const id = parseInt(req.params.id, 10);
     const exerciseData: Partial<ExerciseAdd> = req.body;
@@ -37,20 +34,17 @@ export async function updateExercise(req: Request, res: Response) {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       data: updatedExercise,
       message: res.__('exercise.updated'),
     });
   } catch (err) {
     console.error('Error in updateExercise handler:', err);
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function deleteExercise(req: Request, res: Response) {
+export async function deleteExercise(req: Request, res: Response, next: NextFunction) {
   try {
     const id = parseInt(req.params.id, 10);
     const isDeleted = await exerciseService.deleteExercise(id);
@@ -62,20 +56,17 @@ export async function deleteExercise(req: Request, res: Response) {
       });
     }
 
-    res.status(200).json({
+    return res.status(200).json({
       data: {},
       message: res.__('exercise.deleted'),
     });
   } catch (err) {
     console.error('Error in deleteExercise handler:', err);
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function getAllExercises(req: Request, res: Response) {
+export async function getAllExercises(req: Request, res: Response, next: NextFunction) {
   try {
     const page = req.query.page ? Number(req.query.page) : 1;
     const limit = req.query.limit ? Number(req.query.limit) : 10;
@@ -94,14 +85,11 @@ export async function getAllExercises(req: Request, res: Response) {
     });
   } catch (err) {
     console.error('Error in getAllExercises handler:', err);
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function completeExercise(req: Request, res: Response) {
+export async function completeExercise(req: Request, res: Response, next: NextFunction) {
   let loggedUser = req.user as UserModel;
   const exerciseId = parseInt(req.params.id, 10);
   const { completedAt, duration } = req.body;
@@ -127,14 +115,11 @@ export async function completeExercise(req: Request, res: Response) {
       });
     }
     console.error('Error in completeExercise handler:', err);
-    return res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function deleteCompletionRecord(req: Request, res: Response) {
+export async function deleteCompletionRecord(req: Request, res: Response, next: NextFunction) {
   try {
     let loggedUser = req.user as UserModel;
     const completionRecordId = parseInt(req.params.id, 10);
@@ -156,10 +141,7 @@ export async function deleteCompletionRecord(req: Request, res: Response) {
     });
   } catch (err) {
     console.error('Error in deleteCompletionRecord handler:', err);
-    return res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 

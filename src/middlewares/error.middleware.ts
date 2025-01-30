@@ -8,7 +8,7 @@ const errorHandler = (err: any, req: Request, res: Response, next: NextFunction)
   }
 
   // Handle errors
-  res.status(err.status || 500).json({
+  return res.status(err.status || 500).json({
     data: {},
     message: req.__('errors.internal_error'), // Localized error message
   });

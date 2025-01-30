@@ -5,7 +5,7 @@ import { Router } from 'express';
 
 const router: Router = Router();
 
-//Public - Register new user
+//Public - Register new user, return user body with JWT token
 router.post('/register',
   validationMiddleware({ body: userCreateValidator }), 
   authController.register

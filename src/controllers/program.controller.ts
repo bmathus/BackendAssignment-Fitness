@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import programService from '../services/program.service';
 import AppError from '../utils/error';
 
-export async function getAllPrograms(req: Request, res: Response) {
+export async function getAllPrograms(req: Request, res: Response,next: NextFunction) {
   try {
     const allPrograms = await programService.fetchAll();
     return res.status(200).json({
@@ -11,14 +11,11 @@ export async function getAllPrograms(req: Request, res: Response) {
     });
   } catch (err) {
     console.error('Error in getAllProgram handler:', err);
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function addExerciseToProgram(req: Request, res: Response) {
+export async function addExerciseToProgram(req: Request, res: Response,next: NextFunction) {
   try {
     const { programId, exerciseId } = req.params;
 
@@ -46,14 +43,11 @@ export async function addExerciseToProgram(req: Request, res: Response) {
         message: res.__(err.errorType),
       });
     }
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
-export async function removeExerciseFromProgram(req: Request, res: Response) {
+export async function removeExerciseFromProgram(req: Request, res: Response,next: NextFunction) {
   try {
     const { programId, exerciseId } = req.params;
 
@@ -80,10 +74,7 @@ export async function removeExerciseFromProgram(req: Request, res: Response) {
         message: res.__(err.errorType),
       });
     }
-    res.status(500).json({
-      data: {},
-      message: res.__('errors.internal_error'),
-    });
+    next(err);
   }
 }
 
