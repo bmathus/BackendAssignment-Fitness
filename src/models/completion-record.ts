@@ -16,6 +16,12 @@ export class CompletionRecordModel extends DatabaseModel<
   declare duration: number;
   declare createdAt?: Date;
   declare updatedAt?: Date;
+
+  // Method to exclude updatedAt (user dont need them as we dont update)
+  public toResponse() {
+    const { updatedAt, ...rest } = this.toJSON() as CompletionRecord;
+    return rest;
+  }
 }
 
 export default (sequelize: Sequelize) => {

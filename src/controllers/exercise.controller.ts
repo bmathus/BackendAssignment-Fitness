@@ -108,7 +108,7 @@ export async function completeExercise(req: Request, res: Response) {
     });
     return res.status(201).json({
       message: res.__('exercise.completion.created'),
-      data: completionRecord,
+      data: completionRecord.toResponse(),
     });
   } catch (err) {
     if (err instanceof AppError) {

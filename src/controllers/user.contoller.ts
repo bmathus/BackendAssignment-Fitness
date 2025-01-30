@@ -2,6 +2,9 @@ import { Request, Response } from 'express';
 import userService from '../services/user.service';
 import { UserUpdate } from '../types/user';
 import { UserModel } from '../models/user';
+import { models } from '../models';
+import exerciseService from '../services/exercise.service';
+const { ExerciseModel, CompletionRecordModel } = models;
 
 export async function updateUser(req: Request, res: Response) {
   try {
@@ -18,7 +21,7 @@ export async function updateUser(req: Request, res: Response) {
     }
 
     res.status(200).json({
-      data: updatedUser.toResponse(), // all fields exept timestamps, password
+      data: updatedUser.toResponse(), // all user fields exept timestamps and password
       message: res.__('user.updated'),
     });
   } catch (err) {
@@ -72,7 +75,7 @@ export async function getUserDetail(req: Request, res: Response) {
     }
 
     return res.status(200).json({
-      data: user.toResponse(),
+      data: user.toResponse(), // all user fields exept timestamps and password
       message: res.__('user.detail'),
     });
   } catch (err) {
@@ -84,4 +87,32 @@ export async function getUserDetail(req: Request, res: Response) {
   }
 }
 
-export async function getUserProfile(req: Request, res: Response) {}
+export async function getUserProfile(req: Request, res: Response) {
+  try {
+    const user = req.user as UserModel;
+
+    const exercisesWithRecords = await exerciseService.fetchExercisesOfUser(
+      user.id,
+      true
+    );
+
+    return res.status(200).json({
+      data: {
+        profile: {
+          name: user.name,
+          surname: user.surname,
+          age: user.age,
+          nickName: user.nickName,
+        },
+        exercises: exercisesWithRecords,
+      },
+      message: res.__('user.profile'),
+    });
+  } catch (err) {
+    console.error('Error in getUserProfile handler:', err);
+    res.status(500).json({
+      data: {},
+      message: res.__('errors.internal_error'),
+    });
+  }
+}

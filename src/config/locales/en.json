@@ -10,8 +10,6 @@
       "deleted":"Completion record was successfully deleted.",
       "not_found":"Completion record not found or belong to other user."
     }
-    
-    
   },
   "auth": {
     "register_success":"Registration succesfull.",
@@ -27,7 +25,8 @@
     "not_found": "User not found.",
     "updated": "User updated successfully.",
     "all": "List of users.",
-    "detail":"User detail."
+    "detail":"User detail.",
+    "profile":"My profile and completed exercises."
   },
   "program":{
     "all":"List of programs.",

@@ -10,8 +10,6 @@
       "deleted": "Záznam o dokončení cvičenia bol úspešne zmazaný.",
       "not_found":"Záznam o dokončení cvičenia nebol najdený alebo patrí inému používateľovy."
     }
-    
-    
   },
   "auth": {
     "register_success":"Registrácia uspešná.",
@@ -27,7 +25,8 @@
     "not_found": "Používateľ nebol nájdený.",
     "updated":"Používateľ bol úspešne aktualizovaný.",
     "all": "Zoznam používateľov.",
-    "detail":"Detail používateľa."
+    "detail":"Detail používateľa.",
+    "profile":"Môj profil a dokončené cvičenia."
   },
   "program":{
     "all":"Zoznam programov.",
