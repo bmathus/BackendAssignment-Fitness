@@ -16,7 +16,9 @@ export const updateExerciseValidator = (req: Request) =>
   })
     .or('name', 'difficulty') // At least one field is required
     .messages({
-      'object.missing': req.__('validation.at_least_one_field'),
+      'object.missing': req.__('validation.at_least_one_field', {
+        field: 'name, difficulty',
+      }),
     });
 
 export const exerciseQueryValidator = (req: Request) =>

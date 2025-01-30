@@ -3,9 +3,9 @@ import { Op } from 'sequelize';
 import { models } from '../models';
 const { ExerciseModel, CompletionRecordModel, ProgramModel } = models;
 
-async function createExercise(exerciseData: ExerciseAdd): Promise<Exercise> {
+async function createExercise(exerciseData: ExerciseAdd) {
   const newExercise = await ExerciseModel.create(exerciseData);
-  return newExercise.toResponse();
+  return newExercise;
 }
 
 async function fetchAllPaginated(
@@ -50,13 +50,13 @@ async function fetchAllPaginated(
 async function updateExercise(
   id: number,
   exerciseData: Partial<ExerciseAdd>
-): Promise<null | Exercise> {
+) {
   const exercise = await ExerciseModel.findByPk(id);
   if (!exercise) {
     return null; // Exercise not found
   }
   await exercise.update(exerciseData);
-  return exercise.toResponse();
+  return exercise;
 }
 
 export async function deleteExercise(id: number): Promise<boolean> {
@@ -77,7 +77,7 @@ async function fetchExercisesOfUser(userId: number, includeDeleted: boolean) {
         required: true, // ensures only exercises with completed records are included
       },
     ],
-    paranoid: !includeDeleted, // include soft-deleted exercises by admin, so user dont loose his history of completed exercises
+    paranoid: !includeDeleted, // include soft-deleted exercises by admin, so user dont loose his history of completed exercises in profile
     attributes: ['id', 'name', 'difficulty', 'deletedAt'],
   });
   return exercisesWithRecords;

@@ -19,7 +19,8 @@ export async function addExerciseToProgram(req: Request, res: Response,next: Nex
   try {
     const { programId, exerciseId } = req.params;
 
-    // Check if both objects exist in DB and if their relationship exist
+    // First check if both program and exercise exist and are not soft-deleted
+    // Then check if relation already exist
     const exist = await programService.programExerciseRelationshipExist(+programId, +exerciseId);
 
     if (exist) {
@@ -51,7 +52,9 @@ export async function removeExerciseFromProgram(req: Request, res: Response,next
   try {
     const { programId, exerciseId } = req.params;
 
-    // Check if both objects exist in DB and if their relationship exist
+    // First check if both program and exercise exist and are not soft-deleted
+    // We do this so that softdeleted exercises and programs dont loose relationships in case of recovery
+    // Then check if their relationship exist
     const exist = await programService.programExerciseRelationshipExist(+programId, +exerciseId);
 
     if (!exist) {

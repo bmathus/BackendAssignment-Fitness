@@ -28,6 +28,7 @@ export async function updateUser(req: Request, res: Response, next: NextFunction
   }
 }
 
+// Used in 2 endpoints -> returns response users atributes based on role [ADMIN|USER]
 export async function getAllUsers(req: Request, res: Response, next: NextFunction) {
   try {
     const user = req.user as UserModel;

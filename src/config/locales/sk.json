@@ -8,7 +8,7 @@
     "completion":{
       "created":"Dokončenie cvičenia bolo úspešne zaznamenané.",
       "deleted": "Záznam o dokončení cvičenia bol úspešne zmazaný.",
-      "not_found":"Záznam o dokončení cvičenia nebol najdený alebo patrí inému používateľovy."
+      "not_found":"Záznam o dokončení cvičenia nebol najdený alebo patrí inému používateľovi."
     }
   },
   "auth": {

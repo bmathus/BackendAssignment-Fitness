@@ -11,7 +11,7 @@ router.post('/register',
   authController.register
 );
 
-//Public - Login user with email and password
+//Public - Login user with email and password, return JWT in response
 router.post('/login', 
   validationMiddleware({ body: emailPasswordValidator }), 
   authController.login

@@ -9,7 +9,8 @@ const router: Router = Router();
 //Public - Get list of programs (exercises included)
 router.get('/', programController.getAllPrograms);
 
-//Private [Admin] - Add exercise to program (create relationship)
+//Private [Admin] - Add exercise to program (create relationship in many to many table)
+
 router.post('/:programId/exercises/:exerciseId',
   authenticateJwt,
   roleCheck(['ADMIN']),
@@ -17,7 +18,7 @@ router.post('/:programId/exercises/:exerciseId',
   programController.addExerciseToProgram
 );
 
-//Private [Admin] - Remove exercise from program (delete relationship)
+//Private [Admin] - Remove exercise from program (delete relationship in many to many table)
 router.delete('/:programId/exercises/:exerciseId',
   authenticateJwt,
   roleCheck(['ADMIN']),

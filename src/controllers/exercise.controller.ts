@@ -3,15 +3,16 @@ import { ExerciseAdd } from '../types/exercise';
 import exerciseService from '../services/exercise.service';
 import completionRecordService from '../services/completion-record.service';
 import AppError from '../utils/error';
+import { ExerciseModel } from '../models/exercise';
 import { UserModel } from '../models/user';
 
 export async function createExercise(req: Request, res: Response, next: NextFunction) {
   try {
     const exerciseData: ExerciseAdd = req.body;
-    const newExercise = await exerciseService.createExercise(exerciseData);
+    const newExercise: ExerciseModel = await exerciseService.createExercise(exerciseData);
 
     return res.status(201).json({
-      data: newExercise,
+      data: newExercise.toResponse(), // exclude timestamps
       message: res.__('exercise.created'),
     });
   } catch (err) {
@@ -35,7 +36,7 @@ export async function updateExercise(req: Request, res: Response, next: NextFunc
     }
 
     return res.status(200).json({
-      data: updatedExercise,
+      data: updatedExercise.toResponse(), // exclude timestamps
       message: res.__('exercise.updated'),
     });
   } catch (err) {

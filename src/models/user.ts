@@ -49,7 +49,6 @@ export default (sequelize: Sequelize) => {
       nickName: {
         type: DataTypes.STRING(50),
         allowNull: true, // Optional
-        unique: true, //Unique
         validate: {
           notEmpty: true,
         },

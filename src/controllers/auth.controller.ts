@@ -22,7 +22,7 @@ export async function register(req: Request, res: Response, next: NextFunction) 
     });
   } catch (err) {
     if (err instanceof AppError) {
-      // Email and nickName already used.
+      // Email or nickName already used.
       return res.status(409).json({
         data: {},
         message: req.__(`auth.${err.errorType}`),

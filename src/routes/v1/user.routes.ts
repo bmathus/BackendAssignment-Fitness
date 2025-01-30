@@ -7,25 +7,28 @@ import { authenticateJwt, roleCheck } from '../../middlewares/auth.middleware';
 
 const router: Router = Router();
 
-//Private [Admin] - Update data of specified user (name, surname, nickName, age, role)
+//Private [User] - Get list of users (only with id, nickName)
 router.get('/preview', 
   authenticateJwt, 
   roleCheck(['USER']), 
   userContoller.getAllUsers
 );
 
+//Private [User] - Get users profile with completed exercises included
 router.get('/my-profile', 
   authenticateJwt, 
   roleCheck(['USER']), 
   userContoller.getUserProfile
 );
 
+//Private [Admin] - Get list of users
 router.get('/', 
   authenticateJwt, 
   roleCheck(['ADMIN']), 
   userContoller.getAllUsers
 );
 
+//Private [Admin] - Update user
 router.patch('/:id',
   authenticateJwt,
   roleCheck(['ADMIN']),
@@ -33,6 +36,7 @@ router.patch('/:id',
   userContoller.updateUser
 );
 
+//Private [Admin] - Get user detail
 router.get('/:id',
   authenticateJwt,
   roleCheck(['ADMIN']),

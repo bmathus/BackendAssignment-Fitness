@@ -12,9 +12,10 @@ async function registerUser(userData: UserAdd) {
   const { email, nickName } = userData;
 
   // Check if a user with the same email or nickname already exists
+  const query = nickName ? [{ email }, { nickName }] : [{ email }];
   const existingUser = await UserModel.findOne({
     where: {
-      [Op.or]: [{ email }, { nickName }],
+      [Op.or]: query,
     },
   });
 

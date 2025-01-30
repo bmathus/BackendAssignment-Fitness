@@ -6,7 +6,7 @@ const { ExerciseModel, CompletionRecordModel } = models;
 export async function completeExercise(completionData: CompletionRecordAdd) {
   const exercise = await ExerciseModel.findByPk(completionData.exerciseId);
   if (!exercise) {
-    //Cannot complete non existing or deleted exercise
+    //User cannot complete non existing or deleted exercise
     throw new AppError('Exercise not found', 'exercise.not_found');
   }
 
