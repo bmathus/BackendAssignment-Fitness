@@ -1,4 +1,5 @@
 import { ExerciseAdd, Exercise } from '../types/exercise';
+import { Op } from 'sequelize';
 import { models } from '../models';
 const { ExerciseModel, CompletionRecordModel, ProgramModel } = models;
 
@@ -7,7 +8,12 @@ async function createExercise(exerciseData: ExerciseAdd): Promise<Exercise> {
   return newExercise.toResponse();
 }
 
-async function fetchAllPaginated(page: number = 1, limit: number = 10, programID?: number) {
+async function fetchAllPaginated(
+  page: number = 1,
+  limit: number = 10,
+  programID?: number,
+  search?: string
+) {
   const offset = (page - 1) * limit;
 
   // For program filtering we need to perform join
@@ -25,6 +31,7 @@ async function fetchAllPaginated(page: number = 1, limit: number = 10, programID
     : [];
 
   const { rows: exercises, count: totalExercises } = await ExerciseModel.findAndCountAll({
+    where: search ? { name: { [Op.iLike]: `%${search}%` } } : {}, // Case insensitive search in name field
     include: includeOptions,
     limit,
     offset,

@@ -80,4 +80,9 @@ export const exerciseQueryValidator = (req: Request) =>
       .min(1)
       .optional()
       .messages(validationMessages(req, 'programID query', '', '1')),
+    search: Joi.string()
+      .trim()
+      .min(1)
+      .optional()
+      .messages(validationMessages(req, 'search query', '', '1')),
   });

@@ -28,10 +28,7 @@ export async function updateExercise(req: Request, res: Response) {
     const id = parseInt(req.params.id, 10);
     const exerciseData: Partial<ExerciseAdd> = req.body;
 
-    const updatedExercise = await exerciseService.updateExercise(
-      id,
-      exerciseData
-    );
+    const updatedExercise = await exerciseService.updateExercise(id, exerciseData);
 
     if (!updatedExercise) {
       return res.status(404).json({
@@ -82,14 +79,13 @@ export async function getAllExercises(req: Request, res: Response) {
   try {
     const page = req.query.page ? Number(req.query.page) : 1;
     const limit = req.query.limit ? Number(req.query.limit) : 10;
-    const programID = req.query.programID
-      ? Number(req.query.programID)
-      : undefined;
+    const programID = req.query.programID ? Number(req.query.programID) : undefined;
 
     const allExercises = await exerciseService.fetchAllPaginated(
       page,
       limit,
-      programID
+      programID,
+      req.query.search as string
     );
 
     return res.status(200).json({
@@ -117,6 +113,7 @@ export async function completeExercise(req: Request, res: Response) {
       completedAt,
       duration,
     });
+
     return res.status(201).json({
       message: res.__('exercise.completion.created'),
       data: completionRecord.toResponse(),
