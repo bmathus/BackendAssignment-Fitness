@@ -10,12 +10,7 @@ import { Request } from 'express';
  * @param min - The minimum length or value constraint for the field (optional).
  * @returns An object containing localized validation messages for Joi schema rules.
  */
-const validationMessages = (
-  req: Request,
-  field: string,
-  max?: string,
-  min?: string
-) => ({
+const validationMessages = (req: Request, field: string, max?: string, min?: string) => ({
   'string.base': req.__('validation.string_base', { field }),
   'string.empty': req.__('validation.string_empty', { field }),
   'string.max': req.__('validation.string_max', { field, max }),

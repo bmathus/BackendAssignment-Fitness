@@ -1,14 +1,8 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import DatabaseModel from '../types/db';
-import {
-  CompletionRecord,
-  CompletionRecordAdd,
-} from '../types/completion-record';
+import { CompletionRecord, CompletionRecordAdd } from '../types/completion-record';
 
-export class CompletionRecordModel extends DatabaseModel<
-  CompletionRecord,
-  CompletionRecordAdd
-> {
+export class CompletionRecordModel extends DatabaseModel<CompletionRecord, CompletionRecordAdd> {
   declare id: number;
   declare userId: number;
   declare exerciseId: number;

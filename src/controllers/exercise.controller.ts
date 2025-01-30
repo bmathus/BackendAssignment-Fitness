@@ -162,3 +162,12 @@ export async function deleteCompletionRecord(req: Request, res: Response) {
     });
   }
 }
+
+export default {
+  createExercise,
+  updateExercise,
+  deleteExercise,
+  getAllExercises,
+  completeExercise,
+  deleteCompletionRecord,
+};

@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import programRoutes from './program.routes';
 import exerciseRoutes from './exercise.routes';
 import authRoutes from './auth.routes';

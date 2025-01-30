@@ -18,8 +18,7 @@ export class UserModel extends DatabaseModel<User, UserAdd> {
 
   // Method to exclude timestamps, password
   public toResponse(): User {
-    const { createdAt, updatedAt, deletedAt, password, ...rest } =
-      this.toJSON() as UserModel;
+    const { createdAt, updatedAt, deletedAt, password, ...rest } = this.toJSON() as UserModel;
     return rest;
   }
 }

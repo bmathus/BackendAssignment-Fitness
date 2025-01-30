@@ -19,16 +19,10 @@ async function registerUser(userData: UserAdd) {
   if (existingUser) {
     // Determine which field caused the conflict
     if (existingUser.email === email) {
-      throw new AppError(
-        'A user with this email already exists.',
-        'conflict_email'
-      );
+      throw new AppError('A user with this email already exists.', 'conflict_email');
     }
     if (existingUser.nickName === nickName) {
-      throw new AppError(
-        'A user with this nickname already exists.',
-        'conflict_nick'
-      );
+      throw new AppError('A user with this nickname already exists.', 'conflict_nick');
     }
   }
 

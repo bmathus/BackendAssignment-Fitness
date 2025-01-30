@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 import userService from '../services/user.service';
+import exerciseService from '../services/exercise.service';
 import { UserUpdate } from '../types/user';
 import { UserModel } from '../models/user';
-import { models } from '../models';
-import exerciseService from '../services/exercise.service';
-const { ExerciseModel, CompletionRecordModel } = models;
+
 
 export async function updateUser(req: Request, res: Response) {
   try {
@@ -91,10 +90,7 @@ export async function getUserProfile(req: Request, res: Response) {
   try {
     const user = req.user as UserModel;
 
-    const exercisesWithRecords = await exerciseService.fetchExercisesOfUser(
-      user.id,
-      true
-    );
+    const exercisesWithRecords = await exerciseService.fetchExercisesOfUser(user.id, true);
 
     return res.status(200).json({
       data: {
@@ -115,4 +111,11 @@ export async function getUserProfile(req: Request, res: Response) {
       message: res.__('errors.internal_error'),
     });
   }
+}
+
+export default {
+  updateUser,
+  getAllUsers,
+  getUserDetail,
+  getUserProfile
 }

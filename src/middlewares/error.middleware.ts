@@ -1,12 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 // General error-handling middleware
-const errorHandler = (
-  err: any,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
   // Log the error for debugging
   if (process.env.NODE_ENV === 'DEV') {
     console.error(err.stack);

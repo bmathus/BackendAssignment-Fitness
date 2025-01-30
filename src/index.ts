@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 8000;
 app.use(i18n.init); // Localization middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/v1', v1Router); // Register routes
+app.use('/v1', v1Router);
 app.use(errorHandler);
 
 // Start and run the server

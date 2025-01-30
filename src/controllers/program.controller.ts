@@ -86,3 +86,9 @@ export async function removeExerciseFromProgram(req: Request, res: Response) {
     });
   }
 }
+
+export default {
+  getAllPrograms,
+  addExerciseToProgram,
+  removeExerciseFromProgram,
+};

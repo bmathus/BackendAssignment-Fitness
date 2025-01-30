@@ -3,10 +3,7 @@ import { Sequelize, DataTypes } from 'sequelize';
 import DatabaseModel from '../types/db';
 import { ProgramExercise, ProgramExerciseAdd } from '../types/program-exercise';
 
-export class ProgramExerciseModel extends DatabaseModel<
-  ProgramExercise,
-  ProgramExerciseAdd
-> {
+export class ProgramExerciseModel extends DatabaseModel<ProgramExercise, ProgramExerciseAdd> {
   declare id: number;
   declare programId: number;
   declare exerciseId: number;

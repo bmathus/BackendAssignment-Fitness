@@ -13,10 +13,7 @@ export async function completeExercise(completionData: CompletionRecordAdd) {
   return await CompletionRecordModel.create(completionData);
 }
 
-export async function deleteRecord(
-  id: number,
-  userId: number
-): Promise<boolean> {
+export async function deleteRecord(id: number, userId: number): Promise<boolean> {
   // Deleting based on logged in user so there is not possibility to remove records of others
   const deletedCount = await CompletionRecordModel.destroy({
     where: { id, userId },

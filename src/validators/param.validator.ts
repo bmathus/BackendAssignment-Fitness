@@ -1,11 +1,13 @@
 import Joi from 'joi';
 import { Request } from 'express';
 
+// Validator for single ID parameter like /exercise/:id
 export const IDParamValidator = (req: Request) =>
   Joi.object({
     id: numberValidation('ID parameter', req),
   });
 
+//Validator for programId and exerciseId parameters
 export const ProgramIDExerciseIDValidador = (req: Request) =>
   Joi.object({
     programId: numberValidation('Program ID parameter', req),

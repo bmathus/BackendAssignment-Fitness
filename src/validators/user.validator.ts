@@ -3,17 +3,12 @@ import { ROLE } from '../utils/enums';
 import { Request } from 'express';
 import validationMessages from '../utils/validation-messages';
 
+// User registration body validator
 export const userCreateValidator = (req: Request) =>
   Joi.object({
-    name: Joi.string()
-      .max(100)
-      .messages(validationMessages(req, 'Name', '100')),
-    surname: Joi.string()
-      .max(100)
-      .messages(validationMessages(req, 'Surname', '100')),
-    nickName: Joi.string()
-      .max(50)
-      .messages(validationMessages(req, 'Nickname', '50')),
+    name: Joi.string().max(100).messages(validationMessages(req, 'Name', '100')),
+    surname: Joi.string().max(100).messages(validationMessages(req, 'Surname', '100')),
+    nickName: Joi.string().max(50).messages(validationMessages(req, 'Nickname', '50')),
     email: Joi.string()
       .max(150)
       .email()
@@ -41,29 +36,22 @@ export const userCreateValidator = (req: Request) =>
       .messages(validationMessages(req, 'Role')),
   });
 
+// Login validator
 export const emailPasswordValidator = (req: Request) =>
   Joi.object({
-    email: Joi.string()
-      .max(150)
-      .required()
-      .messages(validationMessages(req, 'Email', '150')),
+    email: Joi.string().max(150).required().messages(validationMessages(req, 'Email', '150')),
     password: Joi.string()
       .max(64)
       .required()
       .messages(validationMessages(req, 'Password', '64', '')),
   });
 
+// User update body validator
 export const userUpdateValidator = (req: Request) =>
   Joi.object({
-    name: Joi.string()
-      .max(100)
-      .messages(validationMessages(req, 'Name', '100')),
-    surname: Joi.string()
-      .max(100)
-      .messages(validationMessages(req, 'Surname', '100')),
-    nickName: Joi.string()
-      .max(50)
-      .messages(validationMessages(req, 'Nickname', '50')),
+    name: Joi.string().max(100).messages(validationMessages(req, 'Name', '100')),
+    surname: Joi.string().max(100).messages(validationMessages(req, 'Surname', '100')),
+    nickName: Joi.string().max(50).messages(validationMessages(req, 'Nickname', '50')),
     age: Joi.number()
       .integer()
       .min(1)

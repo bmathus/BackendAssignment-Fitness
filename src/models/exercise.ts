@@ -13,8 +13,7 @@ export class ExerciseModel extends DatabaseModel<Exercise, ExerciseAdd> {
 
   // Method to exclude timestamps
   public toResponse(): Exercise {
-    const { createdAt, updatedAt, deletedAt, ...rest } =
-      this.toJSON() as ExerciseModel;
+    const { createdAt, updatedAt, deletedAt, ...rest } = this.toJSON() as ExerciseModel;
     return rest;
   }
 }
